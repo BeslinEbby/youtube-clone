@@ -9,7 +9,7 @@ const App = () => {
   return (
     <div className='bg-black min-h-screen w-full text-white'>
       <Header setShowSideBar={setShowSideBar}/>
-      <SideBar/>
+      <SideBar showSideBar={showSideBar}/>
     </div>
   )
 }
