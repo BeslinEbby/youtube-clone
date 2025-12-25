@@ -1,17 +1,19 @@
-import React, { useState } from 'react'
-import Header from './components/Header'
-import { Routes } from 'react-router-dom'
-import SideBar from './components/SideBar'
+import React, { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import Home from "./pages/Home";
 
 const App = () => {
-  const [showSideBar, setShowSideBar]=useState(true)
-  
-  return (
-    <div className='bg-black min-h-screen w-full text-white'>
-      <Header setShowSideBar={setShowSideBar}/>
-      <SideBar showSideBar={showSideBar}/>
-    </div>
-  )
-}
+   const [showSideBar, setShowSideBar] = useState(true);
 
-export default App
+   return (
+      <div className="bg-black min-h-screen w-full text-white">
+         <Header setShowSideBar={setShowSideBar} />
+         <Routes>
+            <Route path="/" element={<Home showSideBar={showSideBar} />} />
+         </Routes>
+      </div>
+   );
+};
+
+export default App;
