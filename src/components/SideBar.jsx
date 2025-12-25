@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiFillHome } from "react-icons/ai";
-import { SiYoutubeshorts } from "react-icons/si";
+import { SiYoutubeshorts, SiYoutubegaming } from "react-icons/si";
 import { MdOutlineSubscriptions} from "react-icons/md";
 import { FaHistory } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
+import { RiGraduationCapLine, RiShoppingBag4Line, RiNewsLine } from "react-icons/ri";
+import { PiMusicNoteBold, PiCoatHangerBold, PiApplePodcastsLogoBold } from "react-icons/pi";
+import { BiMovie } from "react-icons/bi";
+import { HiOutlineStatusOnline } from "react-icons/hi";
+import { BsTrophy } from "react-icons/bs";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const SideBar = ({ showSideBar }) => {
-   
+   const [showAll, setShowAll] = useState(false);
+   const categories = [
+      { icon: <RiShoppingBag4Line />, name: "Shopping" },
+      { icon: <PiMusicNoteBold />, name: "Music" },
+      { icon: <BiMovie />, name: "Movies" },
+      { icon: <HiOutlineStatusOnline />, name: "Live" },
+      { icon: <SiYoutubegaming />, name: "Gaming" },
+      { icon: <RiNewsLine />, name: "News" },
+      { icon: <BsTrophy />, name: "Sports" },
+      { icon: <RiGraduationCapLine />, name: "Courses" },
+      { icon: <PiCoatHangerBold />, name: "Fashion & Beauty" },
+      { icon: <PiApplePodcastsLogoBold />, name: "PodCasts" },
+   ];
    return (
       <section className={`w-62 h-screen pt-15 `}>
          <div className="h-full overflow-y-scroll side-scroll ">
@@ -41,6 +59,32 @@ const SideBar = ({ showSideBar }) => {
                   <CgProfile />
                   <span className="text-sm">Sign In</span>
                </button>
+            </div>
+
+            <hr className="text-(--highlight-color)" />
+
+            <div className="px-5 py-3">
+               <h3 className="p-2">Explore</h3>
+               {categories.map((item, index) =>
+                  showAll ? (
+                     <div className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
+                        <span className="text-2xl">{item.icon}</span>
+                        <p>{item.name}</p>
+                     </div>
+                  ) : index < 3 ? (
+                     <div className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
+                        <span className="text-2xl">{item.icon}</span>
+                        <p>{item.name}</p>
+                     </div>
+                  ) : null
+               )}
+               <div
+                  onClick={() => setShowAll(!showAll)}
+                  className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)"
+               >
+                  <span className="text-xl">{showAll ? <IoIosArrowUp /> : <IoIosArrowDown />}</span>
+                  <p>Show {showAll ? "less" : "more"}</p>
+               </div>
             </div>
 
             <hr className="text-(--highlight-color)" />
