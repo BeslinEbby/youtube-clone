@@ -15,11 +15,9 @@ import { SiYoutubemusic } from "react-icons/si";
 import { LuFlag, LuSettings } from "react-icons/lu";
 import { BiMessageError } from "react-icons/bi";
 
-
-
-
 const SideBar = ({ showSideBar }) => {
    const [showAll, setShowAll] = useState(false);
+
    const categories = [
       { icon: <RiShoppingBag4Line />, name: "Shopping" },
       { icon: <PiMusicNoteBold />, name: "Music" },
@@ -32,8 +30,14 @@ const SideBar = ({ showSideBar }) => {
       { icon: <PiCoatHangerBold />, name: "Fashion & Beauty" },
       { icon: <PiApplePodcastsLogoBold />, name: "PodCasts" },
    ];
+
+   const footerList = [
+      ["About", "Press", "Copyright", "Contact us", "Creators", "Advertise", "Developers"],
+      ["Terms", "Privacy", "Policy & Safety", "How YouTube works", "Test new features"],
+   ];
+
    return (
-      <section className={`w-62 h-screen pt-15 `}>
+      <section className={`w-62 h-screen pt-15 pb-2`}>
          <div className="h-full overflow-y-scroll side-scroll ">
             <div className="px-5 py-3">
                <div className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
@@ -134,6 +138,24 @@ const SideBar = ({ showSideBar }) => {
             </div>
 
             <hr className="text-(--highlight-color)" />
+
+            <footer className="px-5 py-3">
+               <ul className="flex flex-wrap gap-x-3 gap-y-1">
+                  {footerList[0].map((item) => (
+                     <li key={item} className="text-xs font-bold text-white/60">
+                        {item}
+                     </li>
+                  ))}
+               </ul>
+               <ul className="flex flex-wrap gap-x-3 gap-y-1 py-4">
+                  {footerList[1].map((item) => (
+                     <li key={item} className="text-xs font-bold text-white/60">
+                        {item}
+                     </li>
+                  ))}
+               </ul>
+               <span className="text-xs text-white/40">© 2025 Google LLC</span>
+            </footer>
          </div>
       </section>
    );
