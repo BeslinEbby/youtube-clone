@@ -6,7 +6,7 @@ const Home = ({ showSideBar }) => {
    return (
       <main className="flex">
          <SideBar showSideBar={showSideBar} />
-         <div className={`pt-15 p-2 w-full flex-1`}>
+         <div className={`pt-14 p-2 w-full flex-1`}>
             <NavLinks/> 
          </div>
       </main>
