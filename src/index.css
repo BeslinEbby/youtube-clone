@@ -11,17 +11,20 @@ body{
   font-family: "Roboto", sans-serif;
 }
 
+::-webkit-scrollbar{
+  display: none;
+}
 .side-scroll::-webkit-scrollbar{
+  display: block;
   width: 8px;
 }
-.side-scroll::-webkit-scrollbar-thumb{
+.side-scroll::-webkit-scrollbar-thumb, .home::-webkit-scrollbar-thumb{
   background: var(--hover-color);
   border-radius: 12px;
 }
-.side-scroll::-webkit-scrollbar-track{
-  background: transparent;
+
+.home::-webkit-scrollbar{
+  display: block;
+  width: 10px;
 }
 
-.nav-links::-webkit-scrollbar{
-  display: none;
-}

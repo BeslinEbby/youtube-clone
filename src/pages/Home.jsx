@@ -10,7 +10,7 @@ const Home = ({ showSideBar }) => {
    return (
       <main className="flex h-screen w-full">
          <SideBar showSideBar={showSideBar} />
-         <div className={`pt-14 p-2 flex-1 overflow-y-scroll`}>
+         <div className="pt-14 p-2 flex-1 overflow-y-scroll home">
             <NavLinks/> 
             <Feed category={category}/>
          </div>
