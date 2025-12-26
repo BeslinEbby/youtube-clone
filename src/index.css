@@ -21,3 +21,7 @@ body{
 .side-scroll::-webkit-scrollbar-track{
   background: transparent;
 }
+
+.nav-links::-webkit-scrollbar{
+  display: none;
+}
