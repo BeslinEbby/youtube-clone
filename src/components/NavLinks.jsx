@@ -21,7 +21,7 @@ const NavLinks = () => {
    }, []);
 
    return (
-      <div className="h-12 p-2 w-full overflow-x-auto flex gap-4 fixed nav-links">
+      <div className="h-12 w-full p-2 overflow-x-auto flex gap-3 sticky top-0 z-40 bg-black nav-links ">
          <button className="p-1 px-3 font-semibold text-sm bg-white text-black rounded-md cursor-pointer">All</button>
          {categories?.map((item) => (
             <button
