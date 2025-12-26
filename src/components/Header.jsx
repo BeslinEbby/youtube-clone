@@ -13,7 +13,7 @@ const Header = ({ setShowSideBar }) => {
    const [search, setSearch] = useState("");
 
    return (
-      <header className="h-14 w-full px-5 fixed top-0 left-0 z-50 flex justify-between items-center">
+      <header className="h-14 w-full px-5 fixed top-0 left-0 z-50 flex justify-between items-center bg-black">
          <div className="w-1/4 flex items-center gap-3">
             <button className="text-2xl p-3 rounded-full hover:bg-(--hover-color) cursor-pointer">
                <RxHamburgerMenu onClick={() => setShowSideBar((prev) => !prev)} />
