@@ -7,7 +7,7 @@ const SelectedVideo = () => {
 
    return (
       <section className="pt-16 p-13  w-full h-full flex">
-         
+         <PlayVideo videoId={videoId} />
       </section>
    );
 };
