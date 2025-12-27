@@ -7,6 +7,7 @@ import { MdMoreHoriz } from "react-icons/md";
 import ConvertValue from "../utils/ConvertValue";
 import { formatDistanceToNow } from "date-fns";
 import axiosInstance from "../api/AxiosInstance";
+import Comments from "./Comments";
 
 const PlayVideo = ({ videoId }) => {
 
@@ -15,12 +16,13 @@ const PlayVideo = ({ videoId }) => {
    const [videoData, setVideoData] = useState();
    const [channelData, setChannelData] = useState();
    const [showDesc, setShowDesc]=useState(false)
+   const [commentData, setCommentData] = useState([]);
 
    useEffect(() => {
       const fetchVideoData = async () => {
          try {
             const response = await axiosInstance.get(`/videos?part=snippet%2Cstatistics&id=${videoId}&key=${apiKey}`);
-            const data = response.data;            
+            const data = response.data;
             setVideoData(data.items[0]);
          } catch (error) {
             console.log("Error on fetch video data : ", error.message);
@@ -45,8 +47,21 @@ const PlayVideo = ({ videoId }) => {
          }
       };
 
+      const fetchCommentData = async () => {
+         try {
+            const response = await axiosInstance.get(
+               `commentThreads?part=snippet%2Creplies&maxResults=50&videoId=${videoId}&key=${apiKey}`
+            );
+            const data = response.data;
+            setCommentData(data.items);
+         } catch (error) {
+            console.log("Error on fetch comment data : ", error.message);
+         }
+      };
+
       fetchChannelData();
-   }, [videoData]);   
+      fetchCommentData();
+   }, [videoData]);      
 
    return (
       <section className="basis-[70%]">
@@ -54,8 +69,9 @@ const PlayVideo = ({ videoId }) => {
             <div className="w-full">
                <iframe
                   src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+                  title={videoData.snippet.title}
                   frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; full-screen"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerpolicy="strict-origin-when-cross-origin"
                   allowfullscreen
                   className="w-full h-[75vh] rounded-lg"
@@ -136,6 +152,7 @@ const PlayVideo = ({ videoId }) => {
                </div>
             </div>
          )}
+         <Comments videoData={videoData} commentData={commentData} />
       </section>
    );
 };
