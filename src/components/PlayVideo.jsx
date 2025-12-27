@@ -14,12 +14,13 @@ const PlayVideo = ({ videoId }) => {
 
    const [videoData, setVideoData] = useState();
    const [channelData, setChannelData] = useState();
+   const [showDesc, setShowDesc]=useState(false)
 
    useEffect(() => {
       const fetchVideoData = async () => {
          try {
             const response = await axiosInstance.get(`/videos?part=snippet%2Cstatistics&id=${videoId}&key=${apiKey}`);
-            const data = response.data;
+            const data = response.data;            
             setVideoData(data.items[0]);
          } catch (error) {
             console.log("Error on fetch video data : ", error.message);
@@ -45,7 +46,7 @@ const PlayVideo = ({ videoId }) => {
       };
 
       fetchChannelData();
-   }, [videoData]);
+   }, [videoData]);   
 
    return (
       <section className="basis-[70%]">
@@ -103,6 +104,35 @@ const PlayVideo = ({ videoId }) => {
                         <MdMoreHoriz className="text-2xl" />
                      </button>
                   </div>
+               </div>
+               <div
+                  onClick={() => setShowDesc(true)}
+                  className="p-4 my-2 text-sm rounded-lg text-white/90 bg-(--highlight-color) hover:bg-(--hover-color) cursor-pointer"
+               >
+                  <div className="flex items-center gap-2 font-semibold">
+                     <span>{ConvertValue(videoData.statistics.viewCount)} views </span>
+                     <span>{formatDistanceToNow(new Date(videoData.snippet.publishedAt), { addSuffix: true })}</span>
+                     <p></p>
+                  </div>
+                  <div className={showDesc ? "line-clamp-0" : "line-clamp-2"}>
+                     <p>{videoData.snippet.description}</p>
+                     <div className="pt-2 pb-4">
+                        {videoData.snippet.tags.map((tag) => (
+                           <span key={tag} className="text-sky-500 pr-2">
+                              #{tag}
+                           </span>
+                        ))}
+                     </div>
+                  </div>
+                  <button
+                     className="cursor-pointer font-semibold"
+                     onClick={(e) => {
+                        e.stopPropagation();
+                        setShowDesc(!showDesc);
+                     }}
+                  >
+                     {showDesc ? "Show less" : "...more"}
+                  </button>
                </div>
             </div>
          )}
