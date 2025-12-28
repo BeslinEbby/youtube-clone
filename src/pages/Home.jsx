@@ -11,7 +11,7 @@ const Home = ({ showSideBar }) => {
       <main className="flex h-screen w-full">
          <SideBar showSideBar={showSideBar} />
          <div className="pt-14 p-2 flex-1 overflow-y-scroll home">
-            <NavLinks setCategory={setCategory}/> 
+            <NavLinks category={category} setCategory={setCategory}/> 
             <Feed category={category}/>
          </div>
       </main>
