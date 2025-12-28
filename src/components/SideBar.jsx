@@ -53,10 +53,10 @@ const SideBar = ({ showSideBar }) => {
          {showSideBar ? (
             <div className="h-full overflow-y-scroll side-scroll ">
                <div className="px-5 py-3">
-                  {header.map((item) => (
+                  {header.map((item, index) => (
                      <div
                         key={item.name}
-                        className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)"
+                        className={`${index == 0 ? "bg-(--highlight-color)" : ""} flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)`}
                      >
                         <span className="text-2xl">{item.icon}</span>
                         <p>{item.name}</p>
@@ -80,12 +80,12 @@ const SideBar = ({ showSideBar }) => {
                   <h3 className="p-2">Explore</h3>
                   {categories.map((item, index) =>
                      showAll ? (
-                        <div className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
+                        <div key={item.name} className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
                            <span className="text-2xl">{item.icon}</span>
                            <p>{item.name}</p>
                         </div>
                      ) : index < 3 ? (
-                        <div className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
+                        <div key={item.name} className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
                            <span className="text-2xl">{item.icon}</span>
                            <p>{item.name}</p>
                         </div>
