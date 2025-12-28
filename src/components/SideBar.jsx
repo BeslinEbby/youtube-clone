@@ -13,8 +13,15 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { LuFlag, LuSettings } from "react-icons/lu";
 
 const SideBar = ({ showSideBar }) => {
-
    const [showAll, setShowAll] = useState(false);
+
+   const header = [
+      { icon: <AiFillHome />, name: "Home" },
+      { icon: <SiYoutubeshorts />, name: "Shorts" },
+      { icon: <MdOutlineSubscriptions />, name: "Subscriptions" },
+      { icon: <CgProfile />, name: "You" },
+      { icon: <FaHistory />, name: "History" },
+   ];
 
    const categories = [
       { icon: <RiShoppingBag4Line />, name: "Shopping" },
@@ -29,6 +36,13 @@ const SideBar = ({ showSideBar }) => {
       { icon: <PiApplePodcastsLogoBold />, name: "PodCasts" },
    ];
 
+   const settings = [
+      { icon: <LuSettings />, name: "Settings" },
+      { icon: <LuFlag />, name: "Report history" },
+      { icon: <MdHelpOutline />, name: "Help" },
+      { icon: <BiMessageError />, name: "Send feedback" },
+   ];
+
    const footerList = [
       ["About", "Press", "Copyright", "Contact us", "Creators", "Advertise", "Developers"],
       ["Terms", "Privacy", "Policy & Safety", "How YouTube works", "Test new features"],
@@ -39,26 +53,15 @@ const SideBar = ({ showSideBar }) => {
          {showSideBar ? (
             <div className="h-full overflow-y-scroll side-scroll ">
                <div className="px-5 py-3">
-                  <div className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
-                     <AiFillHome className="text-2xl" />
-                     <p>Home</p>
-                  </div>
-                  <div className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
-                     <SiYoutubeshorts className="text-2xl" />
-                     <p>Shorts</p>
-                  </div>
-                  <div className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
-                     <MdOutlineSubscriptions className="text-2xl" />
-                     <p>Subscriptions</p>
-                  </div>
-                  <div className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
-                     <CgProfile className="text-2xl" />
-                     <p>You</p>
-                  </div>
-                  <div className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
-                     <FaHistory className="text-2xl" />
-                     <p>History</p>
-                  </div>
+                  {header.map((item) => (
+                     <div
+                        key={item.name}
+                        className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)"
+                     >
+                        <span className="text-2xl">{item.icon}</span>
+                        <p>{item.name}</p>
+                     </div>
+                  ))}
                </div>
 
                <hr className="text-(--highlight-color)" />
@@ -118,22 +121,13 @@ const SideBar = ({ showSideBar }) => {
                <hr className="text-(--highlight-color)" />
 
                <div className="px-5 py-3">
-                  <div className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
-                     <LuSettings className="text-2xl" />
-                     <p>Settings</p>
+                  {
+                     settings.map((item)=>(
+                  <div key={item.name} className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
+                     <span className="text-2xl">{item.icon}</span>
+                     <p>{item.name}</p>
                   </div>
-                  <div className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
-                     <LuFlag className="text-2xl" />
-                     <p>Report history</p>
-                  </div>
-                  <div className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
-                     <MdHelpOutline className="text-2xl" />
-                     <p>Help</p>
-                  </div>
-                  <div className="flex gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
-                     <BiMessageError className="text-2xl" />
-                     <p>Send feedBack</p>
-                  </div>
+                  ))}
                </div>
 
                <hr className="text-(--highlight-color)" />
@@ -158,22 +152,19 @@ const SideBar = ({ showSideBar }) => {
             </div>
          ) : (
             <div className=" p-2 text-[10px]">
-               <div className="flex flex-col gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
-                  <AiFillHome className="text-2xl" />
-                  <p>Home</p>
-               </div>
-               <div className="flex flex-col gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
-                  <SiYoutubeshorts className="text-2xl" />
-                  <p>Shorts</p>
-               </div>
-               <div className="flex flex-col gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
-                  <MdOutlineSubscriptions className="text-2xl" />
-                  <p>Subscriptions</p>
-               </div>
-               <div className="flex flex-col gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)">
-                  <CgProfile className="text-2xl" />
-                  <p>You</p>
-               </div>
+               {header.map((item, index) => {
+                  if (index < 4) {
+                     return (
+                        <div
+                           key={item.name}
+                           className="flex flex-col gap-4 items-center p-2 rounded-md cursor-pointer hover:bg-(--hover-color)"
+                        >
+                           <span className="text-2xl">{item.icon}</span>
+                           <p>{item.name}</p>
+                        </div>
+                     );
+                  }
+               })}
             </div>
          )}
       </section>
