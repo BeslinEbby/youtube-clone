@@ -133,7 +133,7 @@ const PlayVideo = ({ videoId }) => {
                   <div className={showDesc ? "line-clamp-0" : "line-clamp-2"}>
                      <p>{videoData.snippet.description}</p>
                      <div className="pt-2 pb-4">
-                        {videoData.snippet.tags.map((tag) => (
+                        {videoData.snippet.tags && videoData.snippet.tags.map((tag) => (
                            <span key={tag} className="text-sky-500 pr-2">
                               #{tag}
                            </span>
