@@ -27,10 +27,10 @@ const Feed = ({ category }) => {
    }, [category]);
 
    return (
-      <section className="grid grid-cols-3 gap-1 p-2">
+      <section className="grid sm:grid-cols-2 lg:grid-cols-3 gap-1 p-2">
          {data.map((item) => (
             <Link
-            key={item.id}
+               key={item.id}
                to={`video/${item.snippet.categoryId}/${item.id}`}
                className="flex flex-col gap-1 p-3 rounded-lg hover:bg-(--hover-color)"
             >
